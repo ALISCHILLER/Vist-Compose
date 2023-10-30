@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -36,7 +34,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,18 +50,15 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.msa.visitcompose.MainActivity
-import com.msa.visitcompose.ui.components.shadow
-import com.msa.visitcompose.ui.dialog.roundedCircularProgress.DownloadButtonDialog
+import com.msa.visitcompose.ui.activity.MainActivity
 import com.msa.visitcompose.ui.theme.BlueDark
 import com.msa.visitcompose.ui.theme.Diamond
-import com.msa.visitcompose.ui.theme.QuickSilver
 import com.msa.visitcompose.ui.theme.VisitComposeTheme
 
 @Composable
 fun LoginSection(
     modifier: Modifier,
-    
+    onClick:(Credentials)->Unit
 ) {
 
     Column(
@@ -121,14 +115,11 @@ fun LoginSection(
                     mutableStateOf(true)
                 }
 
-                var cheak by remember {
-                    mutableStateOf(false)
-                }
                 Button(
                     onClick = {
                         if (!checkCredentials(credentials, context)) {
                             credentials = Credentials()
-                            cheak = true
+                            onClick(credentials)
                         }
                     },
                     enabled = credentials.isNotEmpty(),
@@ -154,27 +145,6 @@ fun LoginSection(
 
                     Spacer(modifier = Modifier.height(height = 20.dp))
                 }
-//                if (!checkCredentials(credentials, context) && cheak) {
-//                    DownloadButtonDialog(
-//                        strokeColor = MaterialTheme.colorScheme.onPrimary,
-//                        strokeSize = 8.dp,
-//                        progress = progress.value,
-//                        modifier = Modifier.size(300.dp)
-//                    )
-//
-//                    LaunchedEffect(key1 = startDownload) {
-//                        if (startDownload) {
-//                            progress.animateTo(
-//                                1f,
-//                                tween(6000, 800)
-//                            )
-//                        } else {
-//                            progress.snapTo(0f)
-//                        }
-//                    }
-//                }
-
-
             }
 
         }
@@ -294,7 +264,10 @@ data class Credentials(
 @Composable
 fun LoginSectionPreview() {
     VisitComposeTheme {
-        LoginSection(modifier = Modifier)
+        LoginSection(
+            modifier = Modifier,
+            {}
+        )
 
     }
 }

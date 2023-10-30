@@ -34,15 +34,14 @@ import kotlin.math.roundToInt
 fun DownloadButtonDialog(
     strokeColor: Color,
     strokeSize: Dp,
-    progress: Float,
+    progressAll: Float,
     modifier: Modifier = Modifier
 ) {
-    val progress = remember {
-        Animatable(progress)
-    }
+
     var startDownload by remember {
         mutableStateOf(true)
     }
+
     Dialog(onDismissRequest = { /*TODO*/ }) {
        Card(
            modifier = Modifier
@@ -80,7 +79,7 @@ fun DownloadButtonDialog(
                        onClick = { startDownload = !startDownload },
                        strokeColor = MaterialTheme.colorScheme.onPrimary,
                        strokeSize = 8.dp,
-                       progress = progress.value,
+                       progress = progressAll,
                        modifier = Modifier.size(300.dp)
                    )
                }
@@ -100,7 +99,7 @@ fun DownloadButtonDialogPreview() {
     DownloadButtonDialog(
         strokeColor = MaterialTheme.colorScheme.onPrimary,
         strokeSize = 8.dp,
-        progress = 10f,
+        progressAll = 10f,
         modifier = Modifier.size(300.dp)
     )
 }

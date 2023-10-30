@@ -54,7 +54,7 @@ fun DownloadButton(
     val typography = MaterialTheme.typography
     val scope = rememberCoroutineScope()
 
-    var isAnimating by remember { mutableStateOf(false) }
+    var isAnimating by remember { mutableStateOf(true) }
     val tapAnimation = remember { Animatable(1f) }
 
     Box(
