@@ -30,15 +30,19 @@ class MainActivity : ComponentActivity() {
     private val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen().apply {
             setKeepOnScreenCondition(condition = { viewModel.splashCondition.value })
         }
         setContent {
             VisitComposeTheme {
                 //Add fillMaxSize()
-                Box(modifier = Modifier.background(MaterialTheme.colorScheme.background).fillMaxSize()) {
-                    NavGraph(startDestination = viewModel.startDestination.value)
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                   /// NavGraph(startDestination = viewModel.startDestination.value)
+                    LoginScreen(onEvent = {})
                 }
             }
         }
@@ -51,6 +55,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     VisitComposeTheme {
-        LoginScreen({})
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            LoginScreen(onEvent = {})
+        }
     }
 }

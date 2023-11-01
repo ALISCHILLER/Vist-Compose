@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.msa.visitcompose.ui.screen.login.LoginScreen
 import com.msa.visitcompose.ui.screen.login.LoginViewModel
+import com.msa.visitcompose.ui.visit_navigator.VisitNavigator
 
 @Composable
 fun NavGraph(
@@ -19,12 +20,24 @@ fun NavGraph(
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
             route = Route.AppStartNavigation.route,
-            startDestination = Route.OnBoardingScreen.route
+            startDestination = Route.LoginScreen.route
         ) {
-            composable(route = Route.OnBoardingScreen.route) {
+            composable(route = Route.LoginScreen.route) {
                 val viewModel: LoginViewModel = hiltViewModel()
                 LoginScreen(onEvent = viewModel::onEvent)
             }
         }
+
+
+        navigation(
+            route = Route.VisitNavigation.route,
+            startDestination = Route.VisitNavigatorScreen.route
+        ) {
+            composable(route = Route.VisitNavigatorScreen.route){
+                VisitNavigator()
+            }
+        }
+
+
     }
 }
