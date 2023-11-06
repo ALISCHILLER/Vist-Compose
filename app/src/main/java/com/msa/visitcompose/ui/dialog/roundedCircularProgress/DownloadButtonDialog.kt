@@ -35,13 +35,14 @@ fun DownloadButtonDialog(
     strokeColor: Color,
     strokeSize: Dp,
     progressAll: Float,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
 
     var startDownload by remember {
         mutableStateOf(true)
     }
 
+    
     Dialog(onDismissRequest = { /*TODO*/ }) {
        Card(
            modifier = Modifier
@@ -100,7 +101,7 @@ fun DownloadButtonDialogPreview() {
         strokeColor = MaterialTheme.colorScheme.onPrimary,
         strokeSize = 8.dp,
         progressAll = 10f,
-        modifier = Modifier.size(300.dp)
+        modifier = Modifier.size(300.dp),
     )
 }
 

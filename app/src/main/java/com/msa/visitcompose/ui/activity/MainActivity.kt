@@ -1,6 +1,7 @@
 package com.msa.visitcompose.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -41,8 +42,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                   /// NavGraph(startDestination = viewModel.startDestination.value)
-                    LoginScreen(onEvent = {})
+                    val v=viewModel.startDestination.value
+                    Log.e("Login", "onCreate: $v ", )
+                    NavGraph(startDestination = viewModel.startDestination.value)
                 }
             }
         }

@@ -309,7 +309,7 @@ fun DownloadButton(
                 )
         ) {
             Text(
-                text = "${(progress * 100).roundToInt()}%",
+                text = "${progress.roundToInt()}%",
                 style = typography.titleLarge,
                 color = strokeColor,
                 modifier = Modifier
