@@ -22,6 +22,7 @@ import androidx.core.view.WindowCompat
 import com.msa.visitcompose.ui.navgraph.NavGraph
 import com.msa.visitcompose.ui.screen.login.LoginScreen
 import com.msa.visitcompose.ui.theme.VisitComposeTheme
+import com.msa.visitcompose.ui.visit_navigator.VisitNavigator
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -61,7 +62,7 @@ fun GreetingPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            LoginScreen(onEvent = {})
+            VisitNavigator()
         }
     }
 }
